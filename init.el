@@ -14,6 +14,12 @@
 ;; Disable the BEEP
 (setq ring-bell-function 'ignore)
 
+;; Replace the default terrible autosave with a better option
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" . ,temporary-file-directory t)))
+
 ;; Initialize package sources
 (require 'package)
 
@@ -45,6 +51,8 @@
 		eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+
+
 ;; Themes and support
 (use-package all-the-icons)
 
@@ -55,8 +63,12 @@
 (use-package doom-themes
   :init (load-theme 'doom-one t))
 
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
-;; Ivy for better completion everywhere
+
+
+;; Ivy for better auto-completion everywhere
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -75,12 +87,64 @@
   :config
   (ivy-mode 1))
 
+;; Even more ivy
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; After starting a key binding, gives all completions
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
+
+;; Better information in a variety of minibuffers
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . 'counsel-minibuffer-history)))
+
+(use-package undo-fu
+  :diminish undo-fu-mode)
+
+;; Evil Mode
+(use-package evil
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  (setq evil-undo-system 'undo-fu)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual line mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(ivy doom-themes doom-modeline all-the-icons use-package)))
+ '(package-selected-packages
+   '(rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package)))
 
 
 (custom-set-faces
