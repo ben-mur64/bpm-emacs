@@ -37,6 +37,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(column-number-mode)
 (global-display-line-numbers-mode t)
 
 ;; MACOS specific settings
@@ -97,8 +98,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 1))
-
+  (setq which-key-idle-delay 0.2))
 
 ;; Better information in a variety of minibuffers
 (use-package counsel
@@ -106,10 +106,21 @@
 	 ("C-x b" . counsel-ibuffer)
 	 ("C-x C-f" . counsel-find-file)
 	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history)))
+	 ("C-r" . 'counsel-minibuffer-history))
+  :config
+  (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
-(use-package undo-fu
-  :diminish undo-fu-mode)
+;; Better help pages
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
 
 ;; Evil Mode
 (use-package evil
@@ -121,8 +132,11 @@
   (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1)
+  ;; C-g exits evil modes
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  ;; Better search by default
+  (define-key evil-normal-state-map (kbd "/") 'swiper)
 
   ;; Use visual line motions even outside of visual line mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -136,6 +150,9 @@
   :config
   (evil-collection-init))
 
+(use-package undo-fu
+  :diminish undo-fu-mode)
+
 
 
 (custom-set-variables
@@ -144,7 +161,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package)))
+   '(helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
+ '(which-key-mode t))
 
 
 (custom-set-faces
