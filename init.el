@@ -153,6 +153,8 @@
 (use-package undo-fu
   :diminish undo-fu-mode)
 
+;; An actual terminal emulator in emacs
+(use-package vterm)
 
 
 (custom-set-variables
@@ -161,7 +163,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
+   '(vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
  '(which-key-mode t))
 
 
