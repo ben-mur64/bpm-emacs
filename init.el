@@ -62,9 +62,6 @@
   :init (doom-modeline-mode 1)
   :custom (doom-modeline-height 15))
 
-(use-package doom-themes
-  :init (load-theme 'doom-dracula t))
-
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
@@ -157,6 +154,15 @@
 ;; An actual terminal emulator in emacs
 (use-package vterm)
 
+;; Colorscheme
+(use-package doom-themes
+  :init (load-theme 'doom-dracula t))
+
+;; Org mode
+(use-package org
+  :config
+  (setq org-ellipsis " ▼"))
+
 ;; General for better hotkeys
 (use-package general
   :config
@@ -175,6 +181,11 @@
     "f"   '(:ignore t :which-key "file")
     "ff"  '(counsel-find-file :which-key "counsel-find-file")
 
+    "o"   '(:ignore t :which-key "org")
+    "ol"  '(org-insert-link :which-key "org-insert-link")
+    "oo"  '(org-open-at-point :which-key "org-open-at-point")
+    "otc" '(org-toggle-checkbox :which-key "org-open-at-point")
+
     "v"   '(:ignore t :which-key "vterm")
     "vt"  '(vterm :which-key "vterm")
 
@@ -185,8 +196,8 @@
     "wk"  '(evil-window-up :which-key "evil-window-up")
     "wh"  '(evil-window-left :which-key "evil-window-left")
     "wl"  '(evil-window-right :which-key "evil-window-right")
-    "wq"  '(evil-window-delete :which-key "evil-window-delete")
-    ))
+    "wq"  '(evil-window-delete :which-key "evil-window-delete")))
+
 
 
 
