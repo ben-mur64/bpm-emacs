@@ -63,7 +63,7 @@
   :custom (doom-modeline-height 15))
 
 (use-package doom-themes
-  :init (load-theme 'doom-one t))
+  :init (load-theme 'doom-dracula t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -157,6 +157,38 @@
 ;; An actual terminal emulator in emacs
 (use-package vterm)
 
+;; General for better hotkeys
+(use-package general
+  :config
+  (general-create-definer bpm/leader-keys
+			  :keymaps  '(normal insert visual emacs)
+			  :prefix "SPC"
+			  :global-prefix "C-SPC")
+  (bpm/leader-keys
+
+    "b"   '(:ignore t :which-key "buffer")
+    "bl"  '(counsel-ibuffer :which-key "counsel-ibuffer")
+
+    "e"   '(:ignore t :which-key "elisp")
+    "eb"  '(eval-buffer :which-key "eval-buffer")
+
+    "f"   '(:ignore t :which-key "file")
+    "ff"  '(counsel-find-file :which-key "counsel-find-file")
+
+    "v"   '(:ignore t :which-key "vterm")
+    "vt"  '(vterm :which-key "vterm")
+
+    "w"   '(:ignore t :which-key "window")
+    "ws"  '(evil-window-split :which-key "evil-window-split")
+    "wv"  '(evil-window-vsplit :which-key "evil-window-vsplit")
+    "wj"  '(evil-window-down :which-key "evil-window-down")
+    "wk"  '(evil-window-up :which-key "evil-window-up")
+    "wh"  '(evil-window-left :which-key "evil-window-left")
+    "wl"  '(evil-window-right :which-key "evil-window-right")
+    "wq"  '(evil-window-delete :which-key "evil-window-delete")
+    ))
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -164,7 +196,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
+   '(general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
  '(which-key-mode t))
 
 

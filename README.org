@@ -5,7 +5,7 @@ It's currently very rudimentary and lacks a lot of essential modules that will b
 
 * Priorities
 
-[ ] - Add Counsel and Swiper
+[x] - Add Counsel and Swiper
 [x] - Add EVIL mode
-[ ] - Add general.el for improved keybindings
+[x] - Add general.el for improved keybindings
 [ ] - Add org-mode
