@@ -11,6 +11,9 @@
 ;; Font setup
 (set-face-attribute 'default nil :font "Hack" :height 150)
 
+;; Add nix home to executable path
+(add-to-list 'exec-path "~/.nix-profile/bin")
+
 ;; Disable the BEEP
 (setq ring-bell-function 'ignore)
 
@@ -158,10 +161,28 @@
 (use-package doom-themes
   :init (load-theme 'doom-dracula t))
 
-;; Org mode
+
+;; The all consuming org mode
+(defun bpm/org-mode-setup ()
+  (setq evil-auto-indent nil))
+
 (use-package org
+  :hook (org-mode . bpm/org-mode-setup)
   :config
   (setq org-ellipsis " ▼"))
+
+;; Project management
+(use-package projectile
+  :diminish projectile-mode
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;; The best git client ever?
+(use-package magit)
 
 ;; General for better hotkeys
 (use-package general
@@ -181,10 +202,20 @@
     "f"   '(:ignore t :which-key "file")
     "ff"  '(counsel-find-file :which-key "counsel-find-file")
 
+    "g"   '(:ignore t :which-key "magit")
+    "gs"  '(magit-status :which-key "magit-status")
+
     "o"   '(:ignore t :which-key "org")
     "ol"  '(org-insert-link :which-key "org-insert-link")
     "oo"  '(org-open-at-point :which-key "org-open-at-point")
     "otc" '(org-toggle-checkbox :which-key "org-open-at-point")
+
+    "p"   '(:ignore t :which-key "org")
+    "pp"  '(projectile-switch-project :which-key "projectile-switch-project")
+    "pf"  '(projectile-find-file :which-key "projectile-find-file")
+    "pb"  '(projectile-switch-to-buffer :which-key "projectile-switch-to-buffer")
+    "pI"  '(projectile-ibuffer :which-key "projectile-ibuffer")
+    "pg"  '(counsel-projectile-rg :which-key "counsel-projectile-rg")
 
     "v"   '(:ignore t :which-key "vterm")
     "vt"  '(vterm :which-key "vterm")
@@ -196,7 +227,8 @@
     "wk"  '(evil-window-up :which-key "evil-window-up")
     "wh"  '(evil-window-left :which-key "evil-window-left")
     "wl"  '(evil-window-right :which-key "evil-window-right")
-    "wq"  '(evil-window-delete :which-key "evil-window-delete")))
+    "wq"  '(evil-window-delete :which-key "evil-window-delete")
+    "w="  '(balance-windows :which-key "balance-windows")))
 
 
 
@@ -207,7 +239,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
+   '(magit visual-fill-column visual-fill counsel-projectile projectile general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
  '(which-key-mode t))
 
 

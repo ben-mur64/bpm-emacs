@@ -13,5 +13,6 @@ It's currently very rudimentary and lacks a lot of essential modules that will b
 
 ** Inspiration
 
-[[https://www.youtube.com/playlist?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ][Emacs From Scratch
-]][[https://sheer.tj/the_way_of_emacs.html][The Way of Emacs]]
+[[https://www.youtube.com/playlist?list=PLEoMzSkcN8oPH1au7H6B7bBJ4ZO7BXjSZ][Emacs From Scratch]]
+
+[[https://sheer.tj/the_way_of_emacs.html][The Way of Emacs]]
