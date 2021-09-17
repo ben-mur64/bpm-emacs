@@ -184,6 +184,10 @@
 ;; The best git client ever?
 (use-package magit)
 
+;; Dashboard for nice start up
+(use-package dashboard
+  :config (dashboard-setup-startup-hook))
+
 ;; General for better hotkeys
 (use-package general
   :config
@@ -239,7 +243,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit visual-fill-column visual-fill counsel-projectile projectile general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
+   '(dashboard magit visual-fill-column visual-fill counsel-projectile projectile general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
  '(which-key-mode t))
 
 
