@@ -186,7 +186,17 @@
 
 ;; Dashboard for nice start up
 (use-package dashboard
-  :config (dashboard-setup-startup-hook))
+  :config
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)
+                          (registers . 5)))
+  (setq dashboard-center-content t)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (dashboard-setup-startup-hook))
+
 
 ;; General for better hotkeys
 (use-package general
