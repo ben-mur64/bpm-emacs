@@ -12,7 +12,9 @@
 (set-face-attribute 'default nil :font "Hack" :height 150)
 
 ;; Add nix home to executable path
+(setenv "PATH" (concat (getenv "PATH") ":~/.nix-profile/bin:/usr/local/bin"))
 (add-to-list 'exec-path "~/.nix-profile/bin")
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;; Disable the BEEP
 (setq ring-bell-function 'ignore)
@@ -45,6 +47,8 @@
 
 ;; MACOS specific settings
 (when (eq system-type 'darwin)
+  (setenv "PATH" (concat (getenv "PATH") ":/Applications/Postgres.app/Contents/Versions/12/bin"))
+  (add-to-list 'exec-path "/Applications/Postgres.app/Contents/Versions/12/bin")
     (setq mac-option-modifier 'meta
 	  mac-right-option-modifier 'none))
 
