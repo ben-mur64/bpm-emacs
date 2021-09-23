@@ -25,6 +25,10 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; Get rid of the annoying custom variable blocks
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+
 ;; Initialize package sources
 (require 'package)
 
@@ -221,9 +225,11 @@
     "ff"  '(counsel-find-file :which-key "counsel-find-file")
 
     "g"   '(:ignore t :which-key "magit")
+    "gb"  '(magit-blame :which-key "magit-blame")
     "gs"  '(magit-status :which-key "magit-status")
 
     "o"   '(:ignore t :which-key "org")
+    "oa"  '(org-agenda :which-key "org-agenda")
     "ol"  '(org-insert-link :which-key "org-insert-link")
     "oo"  '(org-open-at-point :which-key "org-open-at-point")
     "otc" '(org-toggle-checkbox :which-key "org-open-at-point")
@@ -247,23 +253,3 @@
     "wl"  '(evil-window-right :which-key "evil-window-right")
     "wq"  '(evil-window-delete :which-key "evil-window-delete")
     "w="  '(balance-windows :which-key "balance-windows")))
-
-
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dashboard magit visual-fill-column visual-fill counsel-projectile projectile general vterm helpful rainbow-delimiters undo-fu evil-collection evil counsel ivy-rich which-key ivy doom-themes doom-modeline all-the-icons use-package))
- '(which-key-mode t))
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
