@@ -13,6 +13,7 @@
 
 ;; Add nix home to executable path
 (setenv "PATH" (concat (getenv "PATH") ":~/.nix-profile/bin:/usr/local/bin"))
+(add-to-list 'exec-path "~/.nix-profile/bin")
 (add-to-list 'exec-path "/usr/local/bin")
 
 ;; Disable the BEEP
@@ -48,7 +49,6 @@
 (when (eq system-type 'darwin)
   (setenv "PATH" (concat (getenv "PATH") ":/Applications/Postgres.app/Contents/Versions/12/bin"))
   (add-to-list 'exec-path "/Applications/Postgres.app/Contents/Versions/12/bin")
-  (add-to-list 'exec-path "/Users/benjaminmurray/.nix-profile/bin")
     (setq mac-option-modifier 'meta
 	  mac-right-option-modifier 'none))
 
