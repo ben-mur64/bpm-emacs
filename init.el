@@ -165,6 +165,13 @@
 ;; An actual terminal emulator in emacs
 (use-package vterm)
 
+(defun bpm/permanent-vterm (buffer-name)
+  "Start a vterm instance and rename the buffer for persistence"
+  (interactive "sBuffer name: ")
+  (vterm)
+  (rename-buffer buffer-name t))
+
+
 ;; Colorscheme
 (use-package doom-themes
   :init (load-theme 'doom-dracula t))
@@ -185,12 +192,15 @@
   :custom ((projectile-completion-system 'ivy))
   :bind-keymap
   ("C-c p" . projectile-command-map))
+(setq projectile-switch-project-action #'projectile-dired)
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
 
 ;; The best git client ever?
 (use-package magit)
+
+
 
 ;; Dashboard for nice start up
 (use-package dashboard
@@ -217,6 +227,8 @@
 
     "b"   '(:ignore t :which-key "buffer")
     "bl"  '(counsel-ibuffer :which-key "counsel-ibuffer")
+    "bp"  '(previous-buffer :which-key "previous-buffer")
+    "br"  '(rename-buffer :which-key "rename-buffer")
 
     "e"   '(:ignore t :which-key "elisp")
     "eb"  '(eval-buffer :which-key "eval-buffer")
@@ -243,6 +255,7 @@
 
     "v"   '(:ignore t :which-key "vterm")
     "vt"  '(vterm :which-key "vterm")
+    "vp"  '(bpm/permanent-vterm :which-key "permanent-vterm")
 
     "w"   '(:ignore t :which-key "window")
     "ws"  '(evil-window-split :which-key "evil-window-split")
