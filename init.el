@@ -179,6 +179,7 @@
 
 ;; The all consuming org mode
 (defun bpm/org-mode-setup ()
+  (setq electric-indent-mode nil)
   (setq evil-auto-indent nil))
 
 (use-package org
@@ -245,6 +246,8 @@
     "ol"  '(org-insert-link :which-key "org-insert-link")
     "oo"  '(org-open-at-point :which-key "org-open-at-point")
     "otc" '(org-toggle-checkbox :which-key "org-open-at-point")
+    "otd" '(org-todo :which-key "org-todo-done")
+    "oty" '(org-todo-yesterday :which-key "org-todo-yesterday")
 
     "p"   '(:ignore t :which-key "org")
     "pp"  '(projectile-switch-project :which-key "projectile-switch-project")
