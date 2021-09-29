@@ -65,8 +65,6 @@
 		eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-
-
 ;; Themes and support
 (use-package all-the-icons)
 
@@ -76,8 +74,6 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-
-
 
 ;; Ivy for better auto-completion everywhere
 (use-package ivy
@@ -131,7 +127,6 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-
 ;; Evil Mode
 (use-package evil
   :init
@@ -174,11 +169,9 @@
   (vterm)
   (rename-buffer buffer-name t))
 
-
 ;; Colorscheme
 (use-package doom-themes
-  :init (load-theme 'doom-dracula t))
-
+  :init (load-theme 'doom-vibrant t))
 
 ;; The all consuming org mode
 (defun bpm/org-mode-setup ()
@@ -204,8 +197,6 @@
 ;; The best git client ever?
 (use-package magit)
 
-
-
 ;; Dashboard for nice start up
 (use-package dashboard
   :config
@@ -218,7 +209,6 @@
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
   (dashboard-setup-startup-hook))
-
 
 ;; General for better hotkeys
 (use-package general
