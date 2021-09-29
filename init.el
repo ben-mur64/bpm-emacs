@@ -58,6 +58,7 @@
 
 ;; Disable line numbers on certain modes
 (dolist (mode '(org-mode-hook
+		helpful-mode-hook
 		term-mode-hook
 		vterm-mode-hook
 		shell-mode-hook
@@ -139,6 +140,8 @@
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
   (setq evil-undo-system 'undo-fu)
+  (setq evil-split-window-below t)
+  (setq evil-vsplit-window-right t)
   :config
   (evil-mode 1)
   ;; C-g exits evil modes
@@ -240,6 +243,12 @@
     "g"   '(:ignore t :which-key "magit")
     "gb"  '(magit-blame :which-key "magit-blame")
     "gs"  '(magit-status :which-key "magit-status")
+
+    "h"   '(:ignore t :which-key "help")
+    "hc"  '(describe-command :which-key "describe-command")
+    "hf"  '(describe-function :which-key "describe-function")
+    "hk"  '(describe-key :which-key "describe-key")
+    "hv"  '(describe-variable :which-key "describe-variable")
 
     "o"   '(:ignore t :which-key "org")
     "oa"  '(org-agenda :which-key "org-agenda")
