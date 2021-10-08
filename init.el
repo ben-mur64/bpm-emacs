@@ -190,6 +190,7 @@
   :bind-keymap
   ("C-c p" . projectile-command-map))
 (setq projectile-switch-project-action #'projectile-dired)
+(setq projectile-project-search-path '("~/"))
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
