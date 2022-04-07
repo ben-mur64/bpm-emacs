@@ -5,6 +5,10 @@ It's currently very rudimentary and lacks a lot of essential modules that will b
 	
 ** Priorities
 - [ ] Add something for workspaces (perspective.el maybe)
+- [ ] Add LSP-Mode
+- [ ] Add Rubcop autolinting
+- [ ] Add Typescript syntax highlighting
+- [ ] Add graphviz support
 - [ ] Fix bugs ->
 
 *** Bugs
