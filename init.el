@@ -5,6 +5,9 @@
 (tooltip-mode -1)      ; Disable the tooltips
 (menu-bar-mode -1)     ; Disable the menu bar
 
+(setq delete-by-moving-to-trash t) ; Don't just wipe stuff, trash first
+(setq window-combination-resize t) ; Take space from all windows
+
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -189,7 +192,7 @@
   :custom ((projectile-completion-system 'ivy))
   :bind-keymap
   ("C-c p" . projectile-command-map))
-(setq projectile-switch-project-action #'projectile-dired)
+(setq projectile-switch-project-action 'projectile-dired)
 (setq projectile-project-search-path '("~/"))
 
 (use-package counsel-projectile
@@ -210,6 +213,9 @@
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
   (dashboard-setup-startup-hook))
+
+;; Really need some markdown highlighting
+(use-package markdown-mode)
 
 ;; General for better hotkeys
 (use-package general
@@ -251,6 +257,7 @@
 
     "p"   '(:ignore t :which-key "org")
     "pp"  '(projectile-switch-project :which-key "projectile-switch-project")
+    "pd"  '(projectile-dired :which-key "projectile-dired")
     "pf"  '(projectile-find-file :which-key "projectile-find-file")
     "pb"  '(projectile-switch-to-buffer :which-key "projectile-switch-to-buffer")
     "pI"  '(projectile-ibuffer :which-key "projectile-ibuffer")
